@@ -9,7 +9,7 @@ import { selectFilter } from '../store/contacts/contacts-selectors';
 import Section from '../components/Section/Section';
 import Filter from '../components/Filter/Filter';
 import Contacts from '../components/Contacts/Contacts';
-import Form from '../components/Form/Form';
+import AddContactForm from '../components/AddContactForm/AddContactForm';
 
 export default function ContactsPage() {
   const dispatch = useDispatch();
@@ -28,12 +28,15 @@ export default function ContactsPage() {
   return (
     <>
       <Section title="Phonebook">
-        <Form onSubmitContact={addContact} />
+        <AddContactForm onSubmitContact={addContact} />
       </Section>
       <Section title="Contacts">
         <Filter value={filter} onChange={handleFilter} />
         {contacts && (
-          <Contacts contacts={filteredContacts} onDeleteClick={deleteContact} />
+          <Contacts
+            contacts={filteredContacts.reverse()}
+            onDeleteClick={deleteContact}
+          />
         )}
       </Section>
     </>
