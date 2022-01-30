@@ -27,7 +27,7 @@ export default function ContactsPage() {
 
   return (
     <>
-      <Section title="Phonebook">
+      <Section title="Add new contact">
         <AddContactForm onSubmitContact={addContact} />
       </Section>
       <Section title="Contacts">

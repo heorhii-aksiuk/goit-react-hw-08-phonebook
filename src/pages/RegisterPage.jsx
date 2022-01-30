@@ -6,7 +6,7 @@ export default function RegisterPage() {
   const plug = loginData => console.log(loginData);
   return (
     <>
-      <Section title="Registration">
+      <Section title="Register">
         <RegisterForm onSubmitRegister={plug} />
       </Section>
     </>
