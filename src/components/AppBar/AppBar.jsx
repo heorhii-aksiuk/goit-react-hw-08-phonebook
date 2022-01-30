@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import Section from '../Section/Section';
+import UserMenu from '../UserMenu/UserMenu';
 
 export default function AppBar() {
   return (
@@ -18,6 +19,7 @@ export default function AppBar() {
               <NavLink to="/login">Login</NavLink>
             </li>
           </ul>
+          <UserMenu></UserMenu>
         </nav>
       </header>
     </Section>
