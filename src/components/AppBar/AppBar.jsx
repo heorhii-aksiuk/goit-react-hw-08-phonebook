@@ -2,21 +2,27 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import Section from '../Section/Section';
 import UserMenu from '../UserMenu/UserMenu';
-
+import s from './AppBar.module.css';
 export default function AppBar() {
   return (
     <Section title="My phonebook">
       <header>
-        <nav>
+        <nav className={s.nav}>
           <ul>
-            <li>
-              <NavLink to="/contacts">Contacts</NavLink>
+            <li className={s.item}>
+              <NavLink to="/contacts" className={s.link}>
+                Contacts
+              </NavLink>
             </li>
-            <li>
-              <NavLink to="/register">Register</NavLink>
+            <li className={s.item}>
+              <NavLink to="/register" className={s.link}>
+                Register
+              </NavLink>
             </li>
-            <li>
-              <NavLink to="/login">Login</NavLink>
+            <li className={s.item}>
+              <NavLink to="/login" className={s.link}>
+                Login
+              </NavLink>
             </li>
           </ul>
           <UserMenu></UserMenu>

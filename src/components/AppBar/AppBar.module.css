@@ -1,0 +1,17 @@
+.nav {
+  display: flex;
+  justify-content: space-between;
+}
+
+.list {
+  display: flex;
+}
+
+.item {
+  padding-bottom: 5px;
+}
+
+.link:hover,
+.link:focus {
+  color: #5a7ae2;
+}
