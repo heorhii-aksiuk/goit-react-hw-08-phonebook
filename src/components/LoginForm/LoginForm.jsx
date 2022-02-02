@@ -1,25 +1,24 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import authOperations from '../../store/auth/auth-operations';
+
 import s from './LoginForm.module.css';
 
-export default function LoginForm({ onSubmitLogin }) {
-  const [login, setLogin] = useState('');
+export default function LoginForm() {
+  const dispatch = useDispatch();
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   function handleChange(e) {
     const { name, value } = e.target;
-    if (name === 'login') setLogin(value);
+    if (name === 'email') setEmail(value);
     if (name === 'password') setPassword(value);
   }
 
   function handleSubmit(e) {
     e.preventDefault();
-    const userLoginData = { login, password };
-    onSubmitLogin(userLoginData);
-    reset();
-  }
-
-  function reset() {
-    setLogin('');
+    dispatch(authOperations.login({ email, password }));
+    setEmail('');
     setPassword('');
   }
 
@@ -27,16 +26,17 @@ export default function LoginForm({ onSubmitLogin }) {
     <form onSubmit={handleSubmit}>
       <div className={s.wrapper}>
         <label className={s.label} htmlFor="loginInLogin">
-          Login:
+          Email:
         </label>
         <input
           className={s.input}
-          value={login}
+          value={email}
           onChange={handleChange}
           type="text"
-          id="loginInLogin"
-          name="login"
-          autoComplete="off"
+          id="emailInLogin"
+          name="email"
+          // autoComplete="off"
+          autoComplete="on"
           required
         />
       </div>
@@ -51,7 +51,8 @@ export default function LoginForm({ onSubmitLogin }) {
           type="password"
           id="passwordInLogin"
           name="password"
-          autoComplete="off"
+          // autoComplete="off"
+          autoComplete="on"
           required
         />
       </div>
