@@ -10,6 +10,7 @@ import Section from '../components/Section/Section';
 import Filter from '../components/Filter/Filter';
 import Contacts from '../components/Contacts/Contacts';
 import AddContactForm from '../components/AddContactForm/AddContactForm';
+import contactsOperations from '../store/contacts/contacts-operations';
 
 export default function ContactsPage() {
   const dispatch = useDispatch();
@@ -24,6 +25,8 @@ export default function ContactsPage() {
   );
 
   const handleFilter = e => dispatch(actions.setFilter(e.target.value));
+
+  dispatch(contactsOperations.fetchContacts());
 
   return (
     <>

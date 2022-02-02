@@ -1,11 +1,25 @@
 import { createSlice } from '@reduxjs/toolkit';
-
+import contactsOperations from './contacts-operations';
 const filterSlice = createSlice({
   name: 'filter',
   initialState: '',
   reducers: {
     setFilter(_, { payload }) {
       return payload;
+    },
+  },
+});
+
+const initialState = {
+  items: [],
+};
+
+const contactsSlice = createSlice({
+  name: 'contacts',
+  initialState,
+  extraReducers: {
+    [contactsOperations.fetchContacts.fulfilled](state, action) {
+      state.items = action.payload;
     },
   },
 });
@@ -17,3 +31,4 @@ export const actions = {
 };
 
 export const filterReducer = filterSlice.reducer;
+export const contactsReducer = contactsSlice.reducer;
