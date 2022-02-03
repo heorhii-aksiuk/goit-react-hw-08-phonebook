@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import authOperations from '../../store/auth/auth-operations';
-
 import s from './LoginForm.module.css';
 
 export default function LoginForm() {
@@ -9,18 +8,18 @@ export default function LoginForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  function handleChange(e) {
-    const { name, value } = e.target;
+  const handleChange = event => {
+    const { name, value } = event.target;
     if (name === 'email') setEmail(value);
     if (name === 'password') setPassword(value);
-  }
+  };
 
-  function handleSubmit(e) {
-    e.preventDefault();
+  const handleSubmit = event => {
+    event.preventDefault();
     dispatch(authOperations.login({ email, password }));
     setEmail('');
     setPassword('');
-  }
+  };
 
   return (
     <form onSubmit={handleSubmit}>
@@ -35,7 +34,6 @@ export default function LoginForm() {
           type="text"
           id="emailInLogin"
           name="email"
-          // autoComplete="off"
           autoComplete="on"
           required
         />
@@ -51,8 +49,7 @@ export default function LoginForm() {
           type="password"
           id="passwordInLogin"
           name="password"
-          // autoComplete="off"
-          autoComplete="on"
+          autoComplete="off"
           required
         />
       </div>

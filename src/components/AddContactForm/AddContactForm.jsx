@@ -6,23 +6,18 @@ export default function AddContactForm({ onSubmitContact }) {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
-  function handleChange(e) {
-    const { name, value } = e.target;
+  const handleChange = event => {
+    const { name, value } = event.target;
     if (name === 'name') setName(value);
     if (name === 'number') setNumber(value);
-  }
+  };
 
-  function handleSubmit(e) {
-    e.preventDefault();
-    const newContact = { name, number };
-    onSubmitContact(newContact);
-    reset();
-  }
-
-  function reset() {
+  const handleSubmit = event => {
+    event.preventDefault();
+    onSubmitContact({ name, number });
     setName('');
     setNumber('');
-  }
+  };
 
   return (
     <form onSubmit={handleSubmit}>

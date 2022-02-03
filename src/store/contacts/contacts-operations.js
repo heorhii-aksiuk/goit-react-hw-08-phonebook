@@ -6,7 +6,7 @@ const fetchContacts = createAsyncThunk('contacts/fetchContacts', async () => {
     const { data } = await axios.get('/contacts');
     return data;
   } catch (error) {
-    // TODO: Добавить обработку ошибки error.message
+    alert(error.message);
   }
 });
 
@@ -17,7 +17,7 @@ const addContact = createAsyncThunk(
       const { data } = await axios.post('/contacts', credentials);
       return data;
     } catch (error) {
-      // TODO: Добавить обработку ошибки error.message
+      alert(error.message);
     }
   },
 );
@@ -27,7 +27,7 @@ const deleteContact = createAsyncThunk('contacts/deleteContact', async id => {
     await axios.delete(`/contacts/${id}`);
     return id;
   } catch (error) {
-    // TODO: Добавить обработку ошибки error.message
+    alert(error.message);
   }
 });
 

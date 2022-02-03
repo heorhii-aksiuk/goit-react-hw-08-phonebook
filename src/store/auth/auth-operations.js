@@ -18,7 +18,7 @@ const register = createAsyncThunk('auth/register', async credentials => {
     token.set(data.token);
     return data;
   } catch (error) {
-    // TODO: Добавить обработку ошибки error.message
+    alert(error.message);
   }
 });
 
@@ -28,7 +28,7 @@ const login = createAsyncThunk('auth/login', async credentials => {
     token.set(data.token);
     return data;
   } catch (error) {
-    // TODO: Добавить обработку ошибки error.message
+    alert(error.message);
   }
 });
 
@@ -38,7 +38,7 @@ const logout = createAsyncThunk('auth/logout', async () => {
     token.unset();
     return data;
   } catch (error) {
-    // TODO: Добавить обработку ошибки error.message
+    alert(error.message);
   }
 });
 
@@ -53,11 +53,12 @@ const fetchCurrentUser = createAsyncThunk(
     }
 
     token.set(persistedToken);
+
     try {
       const { data } = await axios.get('/users/current');
       return data;
     } catch (error) {
-      // TODO: Добавить обработку ошибки error.message
+      alert(error.message);
     }
   },
 );

@@ -5,11 +5,11 @@ import {
   selectContacts,
   selectFilter,
 } from '../store/contacts/contacts-selectors';
+import contactsOperations from '../store/contacts/contacts-operations';
 import Section from '../components/Section/Section';
 import Filter from '../components/Filter/Filter';
 import Contacts from '../components/Contacts/Contacts';
 import AddContactForm from '../components/AddContactForm/AddContactForm';
-import contactsOperations from '../store/contacts/contacts-operations';
 
 export default function ContactsPage() {
   const dispatch = useDispatch();
@@ -20,7 +20,7 @@ export default function ContactsPage() {
     dispatch(contactsOperations.fetchContacts());
   }, [dispatch]);
 
-  const handleFilter = e => dispatch(actions.setFilter(e.target.value));
+  const handleFilter = event => dispatch(actions.setFilter(event.target.value));
 
   const addContact = contact => {
     dispatch(contactsOperations.addContact(contact));

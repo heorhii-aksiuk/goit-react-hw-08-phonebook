@@ -33,4 +33,5 @@ Contacts.propTypes = {
       number: PropTypes.string.isRequired,
     }),
   ),
+  onDeleteClick: PropTypes.func.isRequired,
 };
