@@ -8,10 +8,10 @@ const contactsSlice = createSlice({
   },
   extraReducers: {
     [contactsOperations.fetchContacts.fulfilled](state, action) {
-      state.items = action.payload;
+      state.items = action.payload.reverse();
     },
     [contactsOperations.addContact.fulfilled](state, action) {
-      state.items = [...state.items, action.payload];
+      state.items = [action.payload, ...state.items];
     },
     [contactsOperations.deleteContact.fulfilled](state, action) {
       state.items = state.items.filter(
