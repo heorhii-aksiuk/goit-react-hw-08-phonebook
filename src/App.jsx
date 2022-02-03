@@ -8,9 +8,12 @@ import ContactsPage from './pages/ContactsPage';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import authOperations from './store/auth/auth-operations';
+import { useSelector } from 'react-redux';
+import { selectIsFetchingCurrentUser } from './store/auth/auth-selectors';
 
 export default function App() {
   const dispatch = useDispatch();
+  const isFetchingCurrentUser = useSelector(selectIsFetchingCurrentUser);
 
   useEffect(() => {
     dispatch(authOperations.fetchCurrentUser());
@@ -18,18 +21,27 @@ export default function App() {
 
   return (
     <>
-      <AppBar />
-      <Switch>
-        <PublicRoute exact path="/register">
-          <RegisterPage />
-        </PublicRoute>
-        <PublicRoute exact path="/login">
-          <LoginPage />
-        </PublicRoute>
-        <PrivateRoute exact path="/contacts" redirectTo="/login">
-          <ContactsPage />
-        </PrivateRoute>
-      </Switch>
+      {!isFetchingCurrentUser && (
+        <>
+          <AppBar />
+          <Switch>
+            <PublicRoute
+              exact
+              path="/register"
+              redirectTo="/contacts"
+              restricted
+            >
+              <RegisterPage />
+            </PublicRoute>
+            <PublicRoute exact path="/login" redirectTo="/contacts" restricted>
+              <LoginPage />
+            </PublicRoute>
+            <PrivateRoute exact path="/contacts" redirectTo="/login">
+              <ContactsPage />
+            </PrivateRoute>
+          </Switch>
+        </>
+      )}
     </>
   );
 }
