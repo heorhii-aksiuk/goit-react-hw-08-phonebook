@@ -26,7 +26,7 @@ export default function App() {
         <PublicRoute exact path="/login">
           <LoginPage />
         </PublicRoute>
-        <PrivateRoute exact path="/contacts">
+        <PrivateRoute exact path="/contacts" redirectTo="/login">
           <ContactsPage />
         </PrivateRoute>
       </Switch>
