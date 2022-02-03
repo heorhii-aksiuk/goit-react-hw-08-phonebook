@@ -21,9 +21,12 @@ export default function ContactsPage() {
   }, [dispatch]);
 
   const handleFilter = e => dispatch(actions.setFilter(e.target.value));
+
   const addContact = contact => {
     dispatch(contactsOperations.addContact(contact));
   };
+
+  const deleteContact = id => dispatch(contactsOperations.deleteContact(id));
 
   //TODO: Переместить в селекторы
   const normalizeFilter = filter.toLowerCase();
@@ -43,7 +46,7 @@ export default function ContactsPage() {
         {Array.isArray(contacts) && (
           <Contacts
             contacts={filteredContacts.reverse()}
-            // onDeleteClick={deleteContact}
+            onDeleteClick={deleteContact}
           />
         )}
       </Section>
