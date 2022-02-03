@@ -10,8 +10,21 @@ const fetchContacts = createAsyncThunk('contacts/fetchContacts', async () => {
   }
 });
 
+const addContact = createAsyncThunk(
+  'contacts/addContact',
+  async credentials => {
+    try {
+      const { data } = await axios.post('/contacts', credentials);
+      return data;
+    } catch (error) {
+      // TODO: Добавить обработку ошибки error.message
+    }
+  },
+);
+
 const contactsOperations = {
   fetchContacts,
+  addContact,
 };
 
 export default contactsOperations;

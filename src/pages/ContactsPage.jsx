@@ -8,7 +8,7 @@ import {
 import Section from '../components/Section/Section';
 import Filter from '../components/Filter/Filter';
 import Contacts from '../components/Contacts/Contacts';
-// import AddContactForm from '../components/AddContactForm/AddContactForm';
+import AddContactForm from '../components/AddContactForm/AddContactForm';
 import contactsOperations from '../store/contacts/contacts-operations';
 
 export default function ContactsPage() {
@@ -20,25 +20,28 @@ export default function ContactsPage() {
     dispatch(contactsOperations.fetchContacts());
   }, [dispatch]);
 
-  const normalizeFilter = filter.toLowerCase();
-
-  //надо ли проверка на пустые контакты?
-  const filteredContacts = contacts?.filter(contact =>
-    contact.name.toLowerCase().includes(normalizeFilter),
-  );
-
   const handleFilter = e => dispatch(actions.setFilter(e.target.value));
+  const addContact = contact => {
+    dispatch(contactsOperations.addContact(contact));
+  };
+
+  //TODO: Переместить в селекторы
+  const normalizeFilter = filter.toLowerCase();
+  const filteredContacts = Array.isArray(contacts)
+    ? contacts.filter(contact =>
+        contact.name.toLowerCase().includes(normalizeFilter),
+      )
+    : contacts;
 
   return (
     <>
       <Section title="Add new contact">
-        {/* <AddContactForm onSubmitContact={addContact} /> */}
+        <AddContactForm onSubmitContact={addContact} />
       </Section>
       <Section title="Contacts">
         <Filter value={filter} onChange={handleFilter} />
-        {contacts && (
+        {Array.isArray(contacts) && (
           <Contacts
-            // contacts={contacts}
             contacts={filteredContacts.reverse()}
             // onDeleteClick={deleteContact}
           />
