@@ -118,8 +118,11 @@ dist
 # husky
 /.husky
 
-#vscode sattings
+# vscode sattings
 /.vscode
+
+# netlify
+/.netlify
 
 # misc
 .DS_Store

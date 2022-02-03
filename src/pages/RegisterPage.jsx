@@ -3,10 +3,8 @@ import RegisterForm from '../components/RegisterForm/RegisterForm';
 
 export default function RegisterPage() {
   return (
-    <>
-      <Section title="Register">
-        <RegisterForm />
-      </Section>
-    </>
+    <Section title="Register">
+      <RegisterForm />
+    </Section>
   );
 }
